@@ -5,10 +5,29 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  <h1>Restaurants a prop</h1>
-
-  <!-- KATA: ací van la cerca, el recompte, la llista i l'estat buit -->
-  <ion-text color="medium">
-    <p>Encara no hi ha cap restaurant a la llista.</p>
-  </ion-text>
+  <ion-list>
+    <p>Hay : {{ restaurants.length }} Restaurantes</p>
+    <!-- Recorregut de la llista de restaurants amb la sintaxi @for -->
+    @for (restaurant of restaurants; track restaurant.id) {
+      <!-- L'atribut 'button' afegeix l'efecte visual de clic en dispositius mòbils -->
+      <ion-item> 
+        <ion-label>
+          contar()
+          <h2>{{ restaurant.name }}</h2>
+          <p>Cuisine: {{ restaurant.cuisine }}</p>
+          <p>Rating: {{ restaurant.rating }}</p>
+          <p>Delivery Time: {{ restaurant.deliveryTime }}</p>
+          <p>Delivery Fee: {{ restaurant.deliveryFee }}</p>
+          <ion-img src="{{ restaurant.image }}" alt="Error la imagen no pudo ser cargada" class="imagen"></ion-img>
+        </ion-label>
+      </ion-item>
+    } @empty {
+      <!-- Missatge en cas que l'array 'restaurants' estiga buit -->
+      <div class="ion-text-center ion-padding">
+        <p>No restaurants available.</p>
+      </div>
+    }
+  </ion-list>
 </ion-content>
+
+<!-- button (click)="viewRestaurantDetail(restaurant.id)" -->
